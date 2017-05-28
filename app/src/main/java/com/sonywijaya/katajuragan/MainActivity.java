@@ -4,11 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Handler;
-import android.os.Looper;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,18 +15,16 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity{
@@ -40,6 +36,7 @@ public class MainActivity extends AppCompatActivity{
     @BindView(R.id.textLapakLevel) TextView textLapakLevel;
     @BindView(R.id.textLapakOpen) TextView textLapakOpen;
     @BindView(R.id.buttonLogout) Button buttonLogout;
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +46,27 @@ public class MainActivity extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         String userId = extras.getString("userId");
         String token = extras.getString("token");
+
+        session = new SessionManager(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+        session.checkLogin();
+        HashMap<String, String> user = session.getUserDetails();
+
+        // name
+        String name = user.get(SessionManager.username);
+
+        // email
+//        String email = user.get(SessionManager.pass);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                session.logoutUser();
+//                logout();
             }
         });
 
@@ -107,6 +122,17 @@ public class MainActivity extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), R.string.network_unavailable, Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
+
+    private void logout(){
+//        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPreferences, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.clear();
+//        editor.commit();
     }
 
     private void updateDisplay() {
