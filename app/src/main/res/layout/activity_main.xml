@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
+        android:background="@color/primary"
         android:text="@string/button_logout"
         android:textColor="#FFFFFF"/>
 
@@ -52,6 +52,8 @@
         android:id="@+id/buttonInbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#ecf0f1"
+        android:textColor="@color/primary"
         android:layout_above="@id/buttonLogout"
         android:text="@string/button_inbox"/>
 

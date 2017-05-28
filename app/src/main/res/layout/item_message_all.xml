@@ -37,7 +37,7 @@
                     android:layout_gravity="top"
                     android:text="Date"
                     android:textSize="12sp"
-                    android:textColor="@color/colorAccent"/>
+                    android:textColor="@color/primary"/>
 
                 <TextView
                     android:id="@+id/textMessage"

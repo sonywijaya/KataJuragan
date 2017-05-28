@@ -175,7 +175,7 @@ public class MessageActivity extends AppCompatActivity {
     private void replyAll() {
         for(int i = 0; i < messageList.size(); i++) {
             message = messageList.get(i);
-            String userMessage = message.getId();
+            String userMessage = message.getLast_message();
             final String partnerId = message.getPartner_id();
             if (isNetworkAvailable()) {
                 OkHttpClient client = new OkHttpClient();

@@ -163,17 +163,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private Authentication getAuthentication(String jsonData) throws JSONException {
-        JSONObject product = new JSONObject(jsonData);
-        String uid = product.getString("user_id");
-        String token = product.getString("token");
-        //Log.i(TAG, "UID: " + uid);
-        //Log.i(TAG, "TOKEN: " + token);
+        JSONObject auth = new JSONObject(jsonData);
+        String uid = auth.getString("user_id");
+        String token = auth.getString("token");
 
         Authentication authentication = new Authentication();
         authentication.setUserId(uid);
         authentication.setToken(token);
 
-        /*JSONArray name = product.getJSONArray("products");
+        /*JSONArray name = auth.getJSONArray("auth");
         for(int i = 0; i < name.length(); i++) {
             JSONObject jsonobject = name.getJSONObject(i);
             Log.i(TAG, "Name JSON: " + jsonobject.getString("name"));
