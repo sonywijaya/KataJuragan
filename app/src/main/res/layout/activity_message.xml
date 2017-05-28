@@ -5,40 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0"
     tools:context="com.sonywijaya.katajuragan.MessageActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/messageRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/inputLayout">
+        android:layout_above="@+id/buttonReply">
 
     </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
-        android:id="@+id/inputLayout"
+    <Button
+        android:id="@+id/buttonReply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/messageInput"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="Masukkan pesan Anda disini..."
-            android:padding="10dp"/>
-
-        <Button
-            android:id="@+id/buttonSend"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="#E91E63"
-            android:text="SEND"
-            android:textColor="#ffffff"/>
-    </LinearLayout>
+        android:background="@color/colorPrimary"
+        android:text="Reply All Using Bot"
+        android:textColor="#FFFFFF"/>
 </RelativeLayout>
