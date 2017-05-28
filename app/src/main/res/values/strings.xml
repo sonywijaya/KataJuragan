@@ -8,5 +8,5 @@
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="button_login">Login</string>
-    <string name="button_inbox">Pesan Masuk</string>
+    <string name="button_inbox">Pesan Belum Dibaca</string>
 </resources>

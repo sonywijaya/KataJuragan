@@ -53,7 +53,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textSender, textMessage, textMessageDate;
-        public CircleImageView imageAvatar;
         public CardView cardMessage;
         public ViewHolder(View itemView) {
             super(itemView);

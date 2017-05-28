@@ -175,7 +175,7 @@ public class MessageActivity extends AppCompatActivity {
     private void replyAll() {
         for(int i = 0; i < messageList.size(); i++) {
             message = messageList.get(i);
-            String userMessage = message.getLast_message();
+            String userMessage = message.getId();
             final String partnerId = message.getPartner_id();
             if (isNetworkAvailable()) {
                 OkHttpClient client = new OkHttpClient();
@@ -204,14 +204,13 @@ public class MessageActivity extends AppCompatActivity {
                                     JSONObject result = apiAiResponse.getJSONObject("result");
                                     JSONObject fulfillment = result.getJSONObject("fulfillment");
                                     String reply = fulfillment.getString("speech");
-                                    String replySent = generateJSON(reply, partnerId);
+                                    generateJSON(reply, partnerId);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(getApplicationContext(), "Dikirim ke server", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             } else {
@@ -285,7 +284,7 @@ public class MessageActivity extends AppCompatActivity {
         }
     }
 
-    private String generateJSON(String fulfillment, String receiver) {
+    private void generateJSON(String fulfillment, String receiver) {
         JSONObject obj = new JSONObject();
         JSONObject instant_message = new JSONObject();
 
@@ -300,6 +299,5 @@ public class MessageActivity extends AppCompatActivity {
 
         String jsonString = obj.toString();
         replyToUser(jsonString);
-        return jsonString;
     }
 }
