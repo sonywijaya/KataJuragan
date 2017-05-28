@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity{
 
     public static final String TAG = MainActivity.class.getSimpleName();
     private LapakInfo lapakInfo;
+    @BindView(R.id.textUserName) TextView textUserName;
     @BindView(R.id.textLapakName) TextView textLapakName;
     @BindView(R.id.textLapakDesc) TextView textLapakDesc;
     @BindView(R.id.textLapakLevel) TextView textLapakLevel;
     @BindView(R.id.textLapakOpen) TextView textLapakOpen;
     @BindView(R.id.buttonLogout) Button buttonLogout;
+    @BindView(R.id.buttonInbox) Button buttonInbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,16 @@ public class MainActivity extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         String userId = extras.getString("userId");
         String token = extras.getString("token");
+        buttonInbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
             }
         });
 
@@ -110,8 +119,9 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void updateDisplay() {
+        textUserName.setText("Hi, " + lapakInfo.getUserName() + "!");
         textLapakName.setText(lapakInfo.getLapakName());
-
+        textLapakDesc.setText(lapakInfo.getLapakDescription());
     }
 
     private void goToMain(String userId, String token) {
@@ -127,10 +137,12 @@ public class MainActivity extends AppCompatActivity{
         JSONObject profile = new JSONObject(jsonData);
         JSONObject user = profile.getJSONObject("user");
         LapakInfo lapakInfo = new LapakInfo();
-        if (user.getString("lapak_name").equals(null)) {
-            lapakInfo.setLapakName("Kamu belum bikin lapak.");
+        if (user.getString("lapak_name").equals("null")) {
+            lapakInfo.setUserName(user.getString("name"));
+            lapakInfo.setLapakName("Kamu belum setting nama lapak.");
         }
         else {
+            lapakInfo.setUserName(user.getString("name"));
             lapakInfo.setLapakName(user.getString("lapak_name"));
             lapakInfo.setLapakDescription(user.getString("lapak_desc"));
             lapakInfo.setLapakLevel(user.getString("level"));

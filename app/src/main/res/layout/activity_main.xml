@@ -9,6 +9,11 @@
     tools:context="com.sonywijaya.katajuragan.MainActivity">
 
     <TextView
+        android:id="@+id/textUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:id="@+id/textLapakName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -27,6 +32,12 @@
         android:id="@+id/textLapakOpen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/buttonInbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_inbox"/>
 
     <Button
         android:id="@+id/buttonLogout"

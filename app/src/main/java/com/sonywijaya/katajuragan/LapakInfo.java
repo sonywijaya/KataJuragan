@@ -5,10 +5,19 @@ package com.sonywijaya.katajuragan;
  */
 
 public class LapakInfo {
+    private String userName;
     private String lapakName;
     private String lapakDescription;
     private String lapakLevel;
     private String lapakOpen;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getLapakName() {
         return lapakName;
