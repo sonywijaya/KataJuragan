@@ -1,5 +1,6 @@
 # KataJuragan
 ChatBot untuk seller BukaLapak. Hanya sekali klik bisa membalas semua pesan masuk dari buyer, jawaban dicari sendiri oleh bot. Menggunakan kecerdasan buatan dari api.ai dan dibantu dengan Integromat. 
+ChatBot for BukaLapak seller. Only with single click, seller can reply all messages form buyer. All question answered by bot who powered using artificial intelligence from api.ai and integrated to BukaLapak API using Integromat . 
 
 #### Demo video
 [Kata Juragan Youtube](https://youtu.be/hTHfk0KX0dI)
