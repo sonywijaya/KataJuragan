@@ -27,7 +27,6 @@ ChatBot untuk seller BukaLapak. Hanya sekali klik bisa membalas semua pesan masu
 ## Permissions
 * Internet Access
 * Network State
-* Write to storage
 
 ## Developer
 * Sony Wijaya
