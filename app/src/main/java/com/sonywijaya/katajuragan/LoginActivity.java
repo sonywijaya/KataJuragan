@@ -4,9 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,20 +32,50 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editUsername, editPassword;
     private Button buttonSubmit;
     private Authentication authentication;
+    SessionManager session;
+
+//    public static final String MyPreferences = "MyPref";
+//    public static final String name = "username";
+//    public static final String pass = "password";
+//    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        session = new SessionManager(getApplicationContext());
+
         editUsername = (EditText) findViewById(R.id.editUsername);
         editPassword = (EditText) findViewById(R.id.editPassword);
         buttonSubmit = (Button) findViewById(R.id.buttonLogin);
+
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+//        sharedPreferences = getSharedPreferences(MyPreferences, Context.MODE_PRIVATE);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String username = editUsername.getText().toString();
                 final String password = editPassword.getText().toString();
+//                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.AppTheme_Dark_Dialog);
+//                progressDialog.setIndeterminate(true);
+//                progressDialog.setMessage("Login");
+//                progressDialog.show();
+//
+//                new android.os.Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        progressDialog.dismiss();
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//
+//                    }
+//                },3000);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString(name, username);
+//                editor.putString(pass, password);
+//                editor.commit();
                 if (isNetworkAvailable()) {
                     OkHttpClient client = new OkHttpClient();
                     String credential = Credentials.basic(username, password);
@@ -106,12 +136,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToMain(String userId, String token) {
-        Intent intent = new Intent(this, MainActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("userId", userId);
-        extras.putString("token", token);
-        intent.putExtras(extras);
-        startActivity(intent);
+
+        if(editUsername.getText().toString().trim().length() == 0 && editPassword.getText().toString().trim().length() == 0){
+            editUsername.setError("tolong diisi ya gan");
+            editPassword.setError("tolong diisi ya gan");
+            editUsername.requestFocus();
+            editPassword.requestFocus();
+        }
+        else if(editUsername.getText().toString().trim().length() == 0){
+            editUsername.setError("tolong diisi ya gan");
+            editUsername.requestFocus();
+        }
+        else if(editPassword.getText().toString().trim().length() == 0){
+            editPassword.setError("tolong diisi ya gan");
+            editPassword.requestFocus();
+        }
+        else{
+            session.createLoginSession(editUsername.getText().toString());
+            Intent intent = new Intent(this, MainActivity.class);
+            Bundle extras = new Bundle();
+            extras.putString("userId", userId);
+            extras.putString("token", token);
+            intent.putExtras(extras);
+            startActivity(intent);
+            finish();}
     }
 
     private Authentication getAuthentication(String jsonData) throws JSONException {
