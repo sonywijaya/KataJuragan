@@ -33,5 +33,3 @@
 * Sony Wijaya
 * Eka Darmaputra
 
-## Message from Developer
-Aplikasi masih sangat sederhana, jika berminat untuk pengembangan lebih lanjut, silakan hubungi kami.
