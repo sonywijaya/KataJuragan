@@ -51,31 +51,11 @@ public class LoginActivity extends AppCompatActivity {
         buttonSubmit = (Button) findViewById(R.id.buttonLogin);
 
         Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
-//        sharedPreferences = getSharedPreferences(MyPreferences, Context.MODE_PRIVATE);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String username = editUsername.getText().toString();
                 final String password = editPassword.getText().toString();
-//                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.AppTheme_Dark_Dialog);
-//                progressDialog.setIndeterminate(true);
-//                progressDialog.setMessage("Login");
-//                progressDialog.show();
-//
-//                new android.os.Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        progressDialog.dismiss();
-//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                        startActivity(intent);
-//
-//                    }
-//                },3000);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString(name, username);
-//                editor.putString(pass, password);
-//                editor.commit();
                 if (isNetworkAvailable()) {
                     OkHttpClient client = new OkHttpClient();
                     String credential = Credentials.basic(username, password);
@@ -164,19 +144,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private Authentication getAuthentication(String jsonData) throws JSONException {
         JSONObject auth = new JSONObject(jsonData);
-        String uid = auth.getString("user_id");
-        String token = auth.getString("token");
-
         Authentication authentication = new Authentication();
         authentication.setUserId(uid);
         authentication.setToken(token);
 
-        /*JSONArray name = auth.getJSONArray("auth");
-        for(int i = 0; i < name.length(); i++) {
-            JSONObject jsonobject = name.getJSONObject(i);
-            Log.i(TAG, "Name JSON: " + jsonobject.getString("name"));
-            Log.i(TAG, "Name JSON: " + jsonobject.getString("city"));
-        }*/
         return authentication;
     }
 

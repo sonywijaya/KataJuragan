@@ -150,10 +150,6 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void logout(){
-//        SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPreferences, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.clear();
-//        editor.commit();
     }
 
     private void updateDisplay() {
@@ -327,7 +323,7 @@ public class MainActivity extends AppCompatActivity{
             Request request = new Request.Builder()
                     .url("https://api.api.ai/v1/userEntities?v=20150910&sessionId=12345")
                     .post(body)
-                    .addHeader("authorization", "Bearer 1113a7cb4e2c4ecb96def948d4f14169")
+                    .addHeader("authorization", "Bearer <Token>")
                     .addHeader("content-type", "application/json")
                     .addHeader("cache-control", "no-cache")
                     .build();

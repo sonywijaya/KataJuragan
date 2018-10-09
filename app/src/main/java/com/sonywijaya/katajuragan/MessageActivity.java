@@ -182,7 +182,7 @@ public class MessageActivity extends AppCompatActivity {
                 Request request = new Request.Builder()
                         .url("https://api.api.ai/v1/query?v=20150910&query=" + userMessage + "&lang=en&sessionId=" + userId)
                         .get()
-                        .addHeader("authorization", "Bearer 77bb893031f9470f986fc7765760d2d0")
+                        .addHeader("authorization", "Bearer <Token>")
                         .addHeader("cache-control", "no-cache")
                         .build();
 
